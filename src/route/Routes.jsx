@@ -1,10 +1,25 @@
+import { Route, Routes } from "react-router-dom";
+import Main from "../Layout/Main";
+import Home from "../Pages/Home/Home";
+import Contact from "../Pages/Contact/Contact";
+import Dashboard from "../Pages/Dashboard/Dashboard";
+import AdminHome from "../Pages/Dashboard/AdminHome";
 
-const Routes = () => {
+const RouterApp = () => {
     return (
-        <div>
-            <h1>Routes</h1>
-        </div>
+        <Routes>
+            <Route path="/" element={<Main />}>
+                <Route index element={<Home />} />
+                <Route path="contact" element={<Contact />} />
+
+                {/* dashboard */}
+                <Route path="dashboard" element={<Dashboard />}>
+                    <Route path="admin-home" element={<AdminHome />} />
+                </Route>
+            </Route>
+
+        </Routes>
     );
 };
 
-export default Routes;
+export default RouterApp;
