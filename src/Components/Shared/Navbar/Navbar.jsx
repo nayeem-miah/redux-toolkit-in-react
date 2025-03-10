@@ -1,8 +1,15 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { API } from "../../../api/Api";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const handleLogout = async () => {
+        // await API.post("/logout");
+        toast.success("Logged out successfully!");
+    };
+
     const navLinks = <>
         <NavLink to={'/'} className={({ isActive }) => isActive ? "px-3 py-2 mx-3 mt-2 text-black font-bold transition-colors duration-300 transform rounded-md lg:mt-0 hover:bg-blue-500" : "px-3 py-2 mx-3 mt-2 text-white transition-colors duration-300 transform rounded-md lg:mt-0 hover:bg-blue-500"}>
             Home
@@ -86,7 +93,9 @@ const Navbar = () => {
                             </button>
 
                             <button type="button" className="flex items-center focus:outline-none" aria-label="toggle profile dropdown">
+                                <button onClick={handleLogout} className="text-red-500 btn p-4 mx-2 rounded">Logout</button>
                                 <div className="w-8 h-8 overflow-hidden border-2 border-white rounded-full">
+
                                     <img
                                         src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
                                         className="object-cover w-full h-full"
