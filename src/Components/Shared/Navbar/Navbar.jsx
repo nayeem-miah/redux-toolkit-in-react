@@ -1,20 +1,32 @@
 import { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const navLinks = <>
+        <NavLink to={'/'} className="px-3 py-2 mx-3 mt-2 text-white transition-colors duration-300 transform rounded-md lg:mt-0 hover:bg-blue-500">
+            Home
+        </NavLink>
+        <NavLink to={'/eid-offer'} className="px-3 py-2 mx-3 mt-2 text-white transition-colors duration-300 transform rounded-md lg:mt-0 hover:bg-blue-500">
+            Special eid offer
+        </NavLink>
+        <NavLink to={'/about'} className="px-3 py-2 mx-3 mt-2 text-white transition-colors duration-300 transform rounded-md lg:mt-0 hover:bg-blue-500">
+            About
+        </NavLink>
+        <NavLink to={'/contact'} className="px-3 py-2 mx-3 mt-2 text-white transition-colors duration-300 transform rounded-md lg:mt-0 hover:bg-blue-500">
+            Contact
+        </NavLink>
+
+    </>
 
     return (
-        <nav className="relative bg-blue-600 shadow">
+        <nav className="fixed z-10 w-full  bg-blue-600 shadow">
             <div className="container px-6 py-4 mx-auto">
                 <div className="lg:flex lg:items-center lg:justify-between">
                     <div className="flex items-center justify-between">
-                        <a href="#">
-                            <img
-                                className="w-auto h-6 sm:h-7"
-                                src="https://merakiui.com/images/full-logo.svg"
-                                alt="Logo"
-                            />
-                        </a>
+                        <Link to={'/'}>
+                            EID OFFER
+                        </Link>
 
                         {/* Mobile menu button */}
                         <div className="flex lg:hidden">
@@ -57,18 +69,7 @@ const Navbar = () => {
                             }`}
                     >
                         <div className="flex flex-col -mx-6 lg:flex-row lg:items-center lg:mx-8">
-                            <a href="#" className="px-3 py-2 mx-3 mt-2 text-white transition-colors duration-300 transform rounded-md lg:mt-0 hover:bg-blue-500">
-                                Join Slack
-                            </a>
-                            <a href="#" className="px-3 py-2 mx-3 mt-2 text-white transition-colors duration-300 transform rounded-md lg:mt-0 hover:bg-blue-500">
-                                Browse Topics
-                            </a>
-                            <a href="#" className="px-3 py-2 mx-3 mt-2 text-white transition-colors duration-300 transform rounded-md lg:mt-0 hover:bg-blue-500">
-                                Random Item
-                            </a>
-                            <a href="#" className="px-3 py-2 mx-3 mt-2 text-white transition-colors duration-300 transform rounded-md lg:mt-0 hover:bg-blue-500">
-                                Experts
-                            </a>
+                            {navLinks}
                         </div>
 
                         <div className="flex items-center mt-4 lg:mt-0">
