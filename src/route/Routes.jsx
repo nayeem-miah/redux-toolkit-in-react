@@ -7,6 +7,7 @@ import AdminHome from "../Pages/Dashboard/AdminHome";
 import About from "../Pages/About/About";
 import EidOffer from "../Pages/EidOffer/EidOffer";
 import SignUp from "../Pages/SignUp/SignUp";
+import Login from "../Pages/Login/Login";
 
 const RouterApp = () => {
     return (
@@ -17,6 +18,7 @@ const RouterApp = () => {
                 <Route path="about" element={<About />} />
                 <Route path="eid-offer" element={<EidOffer />} />
                 <Route path="sign-up" element={<SignUp />} />
+                <Route path="login" element={<Login />} />
 
                 {/* dashboard */}
                 <Route path="dashboard" element={<Dashboard />}>

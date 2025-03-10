@@ -16,6 +16,10 @@ const Navbar = () => {
         <NavLink to={'/contact'} className={({ isActive }) => isActive ? "px-3 py-2 mx-3 mt-2 text-black font-bold transition-colors duration-300 transform rounded-md lg:mt-0 hover:bg-blue-500" : "px-3 py-2 mx-3 mt-2 text-white transition-colors duration-300 transform rounded-md lg:mt-0 hover:bg-blue-500"}>
             Contact
         </NavLink>
+        <NavLink to={'/login'} className={({ isActive }) => isActive ? "px-3 py-2 mx-3 mt-2 text-black font-bold transition-colors duration-300 transform rounded-md lg:mt-0 hover:bg-blue-500" : "px-3 py-2 mx-3 mt-2 text-white transition-colors duration-300 transform rounded-md lg:mt-0 hover:bg-blue-500"}>
+            Login
+        </NavLink>
+
 
     </>
 
