@@ -6,6 +6,7 @@ import Dashboard from "../Pages/Dashboard/Dashboard";
 import AdminHome from "../Pages/Dashboard/AdminHome";
 import About from "../Pages/About/About";
 import EidOffer from "../Pages/EidOffer/EidOffer";
+import SignUp from "../Pages/SignUp/SignUp";
 
 const RouterApp = () => {
     return (
@@ -13,8 +14,9 @@ const RouterApp = () => {
             <Route path="/" element={<Main />}>
                 <Route index element={<Home />} />
                 <Route path="contact" element={<Contact />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/eid-offer" element={<EidOffer />} />
+                <Route path="about" element={<About />} />
+                <Route path="eid-offer" element={<EidOffer />} />
+                <Route path="sign-up" element={<SignUp />} />
 
                 {/* dashboard */}
                 <Route path="dashboard" element={<Dashboard />}>
