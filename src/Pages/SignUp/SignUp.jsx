@@ -1,5 +1,8 @@
+
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { API } from "../../api/Api";
+import toast from "react-hot-toast";
 
 function SignUp() {
     const [user, setUser] = useState({ username: "", email: "", password: "" });
@@ -10,16 +13,19 @@ function SignUp() {
         setUser({ ...user, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-
-
-
+        // console.log(user);
+        // Make API call to register user
         try {
-            console.log("User registered successfully", user);
-            // navigate("/login");
+            await API.post("/api/auth/signup", user)
+            toast.success("sign up success")
+            console.log("sign up success")
+            navigate("/login");
         } catch (error) {
             console.error("Something went wrong. Please try again.", error);
+            toast.error(error.message)
+            setError(error)
         }
     };
 

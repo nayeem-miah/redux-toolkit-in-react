@@ -1,13 +1,18 @@
-import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { API } from "../../../api/Api";
 import toast from "react-hot-toast";
+import { AuthContext } from "../../../AuthProvider/AuthProvider";
 
 const Navbar = () => {
+    const { user } = useContext(AuthContext);
+    console.log(user);
+    const navigate = useNavigate()
     const [isOpen, setIsOpen] = useState(false);
     const handleLogout = async () => {
-        // await API.post("/logout");
+        await API.post("/api/auth/logout");
         toast.success("Logged out successfully!");
+        navigate('/')
     };
 
     const navLinks = <>
@@ -93,6 +98,11 @@ const Navbar = () => {
                             </button>
 
                             <button type="button" className="flex items-center focus:outline-none" aria-label="toggle profile dropdown">
+                                {/* {user?.email ?
+                                    <button onClick={handleLogout} className="text-red-500 btn p-4 mx-2 rounded">Logout</button> : <Link to={'/login'} >
+                                        Login
+                                    </Link>
+                                } */}
                                 <button onClick={handleLogout} className="text-red-500 btn p-4 mx-2 rounded">Logout</button>
                                 <div className="w-8 h-8 overflow-hidden border-2 border-white rounded-full">
 
