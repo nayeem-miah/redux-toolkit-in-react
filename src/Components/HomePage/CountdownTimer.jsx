@@ -31,10 +31,10 @@ export default function CountdownTimer() {
     }, []);
 
     return (
-        <div className="text-center py-8 bg-yellow-100 text-gray-800 rounded-lg shadow-md">
+        <div className="text-center py-10 bg-yellow-100 text-gray-800 rounded-lg shadow-md">
             <h2 className="text-3xl font-bold text-yellow-600">🕰️ Eid Countdown 2025</h2>
             <p className="mt-2 text-lg">Time Left Until Eid:</p>
-            <div className="flex justify-center space-x-4 text-2xl font-semibold mt-4">
+            <div className="flex justify-center space-x-4 md:space-x-8 py-5 text-2xl font-semibold mt-4 ">
                 <div className="bg-yellow-500 text-white px-4 py-2 rounded">
                     {timeLeft.days} <span className="text-sm">Days</span>
                 </div>
