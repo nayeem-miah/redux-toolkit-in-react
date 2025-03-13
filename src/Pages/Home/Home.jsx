@@ -8,6 +8,8 @@ const Home = () => {
             <Banner />
             <div className="my-10">
                 <CountdownTimer />
+            </div>
+            <div className="my-10">
                 <RecentProduct />
             </div>
         </div>
