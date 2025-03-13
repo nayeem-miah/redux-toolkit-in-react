@@ -1,6 +1,7 @@
 import Banner from "../../Components/HomePage/Banner";
 import CountdownTimer from "../../Components/HomePage/CountdownTimer";
 import RecentProduct from "../../Components/HomePage/RecentProduct";
+import ReviewSection from "../../Components/HomePage/ReviewSection";
 
 const Home = () => {
     return (
@@ -12,6 +13,7 @@ const Home = () => {
             <div className="my-10">
                 <RecentProduct />
             </div>
+            <ReviewSection />
         </div>
     )
 }
