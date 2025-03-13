@@ -10,7 +10,9 @@ createRoot(document.getElementById('root')).render(
   <AuthProvider>
     <StrictMode>
       <BrowserRouter>
-        <RouterApp />
+        <div className='bg-yellow-50'>
+          <RouterApp />
+        </div>
         <Toaster />
       </BrowserRouter>
     </StrictMode>
