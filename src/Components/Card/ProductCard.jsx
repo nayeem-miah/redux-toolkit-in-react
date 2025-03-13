@@ -8,9 +8,11 @@ const ProductCard = ({ product }) => {
                 alt={product.name}
             />
             <div className="pt-4 pb-2 px-3">
-                <div className="font-bold text-2xl text-gray-800 mb-2">{product.name}</div>
+                <div className="flex justify-between items-center">
+                    <p className="font-bold text-2xl text-gray-800 mb-2">{product.name}</p>
+                    <p className="text-yellow-500 font-bold text-xl ">৳ {product.price}</p>
+                </div>
                 <p className="text-gray-600 text-sm">{product.category} - {product.brand}</p>
-                <p className="text-yellow-500 font-semibold text-lg mt-3">৳ {product.price}</p>
                 <div className="flex items-center text-sm text-gray-600 mt-2">
                     <p>Size: <span className="font-semibold">{product.size}</span></p>
                     <p className="ml-4">Color: <span className="font-semibold">{product.color}</span></p>
