@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import ProductCard from "../Card/ProductCard";
-const Products = () => {
+
+function RecentProduct() {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
 
@@ -18,17 +19,18 @@ const Products = () => {
     }, [])
     console.log(products);
 
+    const topProducts = products.filter(product => product.rating >= 4.5);
     return (
-        <div className="py-10 px-4">
+        <div>
             <h3 className="text-center text-3xl from-amber-500 my-4">Eid products</h3>
             {loading ? <p>loading........</p> : <div className="grid grid-cols-1 md:grid-cols-2
              lg:grid-cols-3 xl:grid-cols-3 xxl:grid-cols-4 gap-10">
                 {
-                    products?.map(product => <ProductCard key={product.id} product={product} />)
+                    topProducts?.map(product => <ProductCard key={product.id} product={product} />)
                 }
             </div>}
         </div>
-    )
+    );
 }
 
-export default Products;
+export default RecentProduct;
