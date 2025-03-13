@@ -8,6 +8,7 @@ import About from "../Pages/About/About";
 import EidOffer from "../Pages/EidOffer/EidOffer";
 import SignUp from "../Pages/SignUp/SignUp";
 import Login from "../Pages/Login/Login";
+import PRoductDetails from "../Components/EidOffer/ProductDetaisl";
 
 const RouterApp = () => {
     return (
@@ -17,6 +18,7 @@ const RouterApp = () => {
                 <Route path="contact" element={<Contact />} />
                 <Route path="about" element={<About />} />
                 <Route path="eid-offer" element={<EidOffer />} />
+                <Route path="product/:id" element={<PRoductDetails />} />
                 <Route path="sign-up" element={<SignUp />} />
                 <Route path="login" element={<Login />} />
 

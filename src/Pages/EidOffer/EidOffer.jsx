@@ -1,10 +1,15 @@
+import Products from "../../Components/EidOffer/Product";
+
 const EidOffer = () => {
 
-    return (<div className="py-36">
-        <div className="p-10 bg-amber-400">
-            Eid EidOffer
+    return (
+        <div className="">
+            <div className="">
+                Eid EidOffer
+                <Products />
+            </div>
         </div>
-    </div>)
+    )
 }
 
 export default EidOffer;
