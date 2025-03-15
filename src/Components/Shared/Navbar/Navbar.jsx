@@ -22,9 +22,9 @@ const Navbar = () => {
         <NavLink to={'/eid-offer'} className={({ isActive }) => isActive ? "px-3 py-2 mx-3 mt-2 text-yellow-500 font-bold transition-colors duration-300 transform rounded-md lg:mt-0 hover:bg-blue-500" : "px-3 py-2 mx-3 mt-2 text-white transition-colors duration-300 transform rounded-md lg:mt-0 hover:bg-blue-500"}>
             Special eid offer
         </NavLink>
-        <NavLink to={'/about'} className={({ isActive }) => isActive ? "px-3 py-2 mx-3 mt-2 text-yellow-500 font-bold transition-colors duration-300 transform rounded-md lg:mt-0 hover:bg-blue-500" : "px-3 py-2 mx-3 mt-2 text-white transition-colors duration-300 transform rounded-md lg:mt-0 hover:bg-blue-500"}>
+        {/* <NavLink to={'/about'} className={({ isActive }) => isActive ? "px-3 py-2 mx-3 mt-2 text-yellow-500 font-bold transition-colors duration-300 transform rounded-md lg:mt-0 hover:bg-blue-500" : "px-3 py-2 mx-3 mt-2 text-white transition-colors duration-300 transform rounded-md lg:mt-0 hover:bg-blue-500"}>
             About
-        </NavLink>
+        </NavLink> */}
         <NavLink to={'/contact'} className={({ isActive }) => isActive ? "px-3 py-2 mx-3 mt-2 text-yellow-500 font-bold transition-colors duration-300 transform rounded-md lg:mt-0 hover:bg-blue-500" : "px-3 py-2 mx-3 mt-2 text-white transition-colors duration-300 transform rounded-md lg:mt-0 hover:bg-blue-500"}>
             Contact
         </NavLink>

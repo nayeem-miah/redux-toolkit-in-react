@@ -1,4 +1,3 @@
-
 export default function ReviewSection() {
     // Array of reviews
     const reviews = [
