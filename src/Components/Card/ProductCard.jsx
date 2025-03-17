@@ -39,7 +39,6 @@ const ProductCard = ({ product }) => {
             .catch((error) => {
                 console.error("Error adding product to cart:", error);
             });
-
     };
     return (
         <div className=" rounded-lg overflow-hidden shadow-xl transform transition-all bg-white p-4 hover:shadow-2xl">

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
+import { toast } from "react-hot-toast";
 const ProductDetails = () => {
     const { id } = useParams();
     const [product, setProduct] = useState(null);
@@ -39,6 +39,42 @@ const ProductDetails = () => {
     if (!product) {
         return <p className="text-center text-gray-500">Product not found</p>;
     }
+
+    const handleAddToCart = () => {
+        console.log("Product added to cart:", product);
+
+        const addProduct = {
+            product_img: product.product_img,
+            name: product.name,
+            price: product.price,
+            category: product.category,
+            brand: product.brand,
+            size: product.size,
+            color: product.color,
+            material: product.material,
+            availability: product.availability,
+            rating: product.rating,
+        };
+
+        fetch("http://localhost:5000/carts", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(addProduct),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log("Product added to cart:", data);
+
+                if (data.insertedId) {
+                    toast.success("Product added to cart successfully!");
+                }
+            })
+            .catch((error) => {
+                console.error("Error adding product to cart:", error);
+            });
+    };
 
     return (
         <div className="max-w-5xl mx-auto p-6 my-10 bg-white shadow-lg rounded-xl mt-10">
@@ -83,7 +119,7 @@ const ProductDetails = () => {
 
                     {/* Action Buttons */}
                     <div className="mt-6 flex space-x-4">
-                        <button className="bg-yellow-500 text-white py-2 px-4 rounded-full font-medium hover:bg-yellow-400 transition duration-200 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                        <button onClick={handleAddToCart} className="bg-yellow-500 text-white py-2 px-4 rounded-full font-medium hover:bg-yellow-400 transition duration-200 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-yellow-400">
                             Add to Cart
                         </button>
                     </div>
