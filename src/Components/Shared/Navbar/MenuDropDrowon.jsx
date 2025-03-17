@@ -69,7 +69,12 @@ const MenuDropdown = () => {
                                 >
                                     Dashboard
                                 </Link>
-
+                                <Link
+                                    to="/my-added-product"
+                                    className="px-4 py-3 hover:bg-neutral-100 transition font-semibold"
+                                >
+                                    My added product
+                                </Link>
 
                                 <div
                                     onClick={handleLogout}

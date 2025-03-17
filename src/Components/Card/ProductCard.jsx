@@ -1,8 +1,11 @@
+import { useContext } from "react";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const ProductCard = ({ product }) => {
     // console.log(product);
+    const { user } = useContext(AuthContext);
 
 
     const handleAddToCart = () => {
@@ -19,7 +22,9 @@ const ProductCard = ({ product }) => {
             material: product.material,
             availability: product.availability,
             rating: product.rating,
+            email: user?.email,
         };
+
 
         fetch("http://localhost:5000/carts", {
             method: "POST",
@@ -66,9 +71,13 @@ const ProductCard = ({ product }) => {
                 </div>
             </div>
             <div className="px-6 py-4 flex justify-between items-center mt-4">
-                <button onClick={handleAddToCart} className="bg-yellow-500 text-white py-2 px-5 rounded-full font-medium hover:bg-yellow-400 transition duration-200 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-yellow-400">
-                    Add to Cart
-                </button>
+                {
+                    user ? <button onClick={handleAddToCart} className="bg-yellow-500 text-white py-2 px-5 rounded-full font-medium hover:bg-yellow-400 transition duration-200 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                        Add to Cart
+                    </button> : <Link to={'/login'} className="bg-yellow-500 text-white py-2 px-5 rounded-full font-medium hover:bg-yellow-400 transition duration-200 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                        Add to Cart
+                    </Link>
+                }
                 <Link
                     to={`/product/${product._id}`}>
                     <button className="bg-transparent text-yellow-500 py-2 px-4 rounded-full border-2 border-yellow-500 font-medium hover:bg-yellow-100 transition duration-200 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-yellow-400">

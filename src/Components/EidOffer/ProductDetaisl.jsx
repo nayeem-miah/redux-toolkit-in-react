@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
 const ProductDetails = () => {
     const { id } = useParams();
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const { user } = useContext(AuthContext);
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -54,6 +56,7 @@ const ProductDetails = () => {
             material: product.material,
             availability: product.availability,
             rating: product.rating,
+            email: user?.email,
         };
 
         fetch("http://localhost:5000/carts", {
@@ -119,9 +122,13 @@ const ProductDetails = () => {
 
                     {/* Action Buttons */}
                     <div className="mt-6 flex space-x-4">
-                        <button onClick={handleAddToCart} className="bg-yellow-500 text-white py-2 px-4 rounded-full font-medium hover:bg-yellow-400 transition duration-200 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-yellow-400">
-                            Add to Cart
-                        </button>
+                        {
+                            user ? <button onClick={handleAddToCart} className="bg-yellow-500 text-white py-2 px-5 rounded-full font-medium hover:bg-yellow-400 transition duration-200 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                                Add to Cart
+                            </button> : <Link to={'/login'} className="bg-yellow-500 text-white py-2 px-5 rounded-full font-medium hover:bg-yellow-400 transition duration-200 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                                Add to Cart
+                            </Link>
+                        }
                     </div>
                 </div>
             </div>
