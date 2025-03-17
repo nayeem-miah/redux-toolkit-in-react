@@ -3,8 +3,8 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { API } from "../../../api/Api";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
-import avatarImg from '../../../assets/placeholder.jpg'
 import { AiOutlineMenu } from "react-icons/ai";
+import MenuDropdown from "./MenuDropDrowon";
 
 const Navbar = () => {
     const { user } = useContext(AuthContext);
@@ -24,9 +24,7 @@ const Navbar = () => {
         <NavLink to={'/eid-offer'} className={({ isActive }) => isActive ? "px-3 py-2 mx-3 mt-2 text-yellow-500 font-bold transition-colors duration-300 transform rounded-md lg:mt-0 hover:bg-blue-500" : "px-3 py-2 mx-3 mt-2 text-white transition-colors duration-300 transform rounded-md lg:mt-0 hover:bg-blue-500"}>
             Special eid offer
         </NavLink>
-        {/* <NavLink to={'/about'} className={({ isActive }) => isActive ? "px-3 py-2 mx-3 mt-2 text-yellow-500 font-bold transition-colors duration-300 transform rounded-md lg:mt-0 hover:bg-blue-500" : "px-3 py-2 mx-3 mt-2 text-white transition-colors duration-300 transform rounded-md lg:mt-0 hover:bg-blue-500"}>
-            About
-        </NavLink> */}
+
         <NavLink to={'/contact'} className={({ isActive }) => isActive ? "px-3 py-2 mx-3 mt-2 text-yellow-500 font-bold transition-colors duration-300 transform rounded-md lg:mt-0 hover:bg-blue-500" : "px-3 py-2 mx-3 mt-2 text-white transition-colors duration-300 transform rounded-md lg:mt-0 hover:bg-blue-500"}>
             Contact
         </NavLink>
@@ -90,84 +88,60 @@ const Navbar = () => {
 
 
 
-                        {/* Dropdown Menu */}
-                        <div className='relative'>
-                            <div className='flex flex-row items-center gap-3'>
-                                {/* Become A Host btn */}
-                                <div className='hidden md:block'>
-                                    {!user && (
-                                        <button
-                                            disabled={!user}
-                                            className='disabled:cursor-not-allowed cursor-pointer hover:bg-neutral-100 py-3 px-4 text-sm font-semibold rounded-full  transition'
-                                        >
-                                            Host your home
-                                        </button>
+                        <div
+                            className={`${isOpen
+                                ? "translate-x-0 bg-blue-600 opacity-100 "
+                                : "opacity-0 -translate-x-full "
+                                } absolute inset-x-0 z-20 w-full px-6 py-2 transition-all duration-300 ease-in-out   md:mt-0 md:p-0 md:top-0 md:relative md:bg-transparent md:w-auto md:opacity-100 md:translate-x-0 md:flex md:items-center`}
+                        >
+                            <div className="flex flex-col md:flex-row md:mx-6   ">
+
+                                <span className="block md:hidden">
+                                    {user ? (
+                                        <div className="space-y-5 font-bold uppercase mt-3">
+                                            <div>
+                                            </div>
+                                            <div
+                                                onClick={handleLogout}
+                                                className="  font-bold my-2  transition-colors duration-300 transform hover:text-red-500  md:mx-4 md:my-0"
+                                            >
+                                                Logout
+                                            </div>
+                                        </div>
+                                    ) : (
+                                        <div className="space-y-3 font-bold uppercase mt-3">
+                                            <div className=" ">
+                                                <NavLink
+                                                    to="/login"
+                                                    className={({ isActive }) =>
+                                                        isActive
+                                                            ? "text-blue-500  font-bold my-2  transition-colors duration-300 transform hover:text-blue-300 dark:hover:text-blue-400 md:mx-4 md:my-0 "
+                                                            : " font-bold my-2  transition-colors duration-300 transform hover:text-blue-300 dark:hover:text-blue-400 md:mx-4 md:my-0"
+                                                    }
+                                                >
+                                                    Login
+                                                </NavLink>
+                                            </div>
+                                            <div className=" ">
+                                                <NavLink
+                                                    to="/signup"
+                                                    className={({ isActive }) =>
+                                                        isActive
+                                                            ? "text-blue-500  font-bold my-2  transition-colors duration-300 transform hover:text-blue-300 dark:hover:text-blue-400 md:mx-4 md:my-0"
+                                                            : " font-bold my-2  transition-colors duration-300 transform hover:text-blue-300 dark:hover:text-blue-400 md:mx-4 md:my-0"
+                                                    }
+                                                >
+                                                    Sign Up
+                                                </NavLink>
+                                            </div>
+                                        </div>
                                     )}
-                                </div>
-                                {/* Dropdown btn */}
-                                <div
-                                    onClick={() => setIsOpen(!isOpen)}
-                                    className='p-4 md:py-1 md:px-2 border-[1px] border-neutral-200 flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition'
-                                >
-                                    <AiOutlineMenu />
-                                    <div className='hidden md:block'>
-                                        {/* Avatar */}
-                                        <img
-                                            className='rounded-full'
-                                            referrerPolicy='no-referrer'
-                                            src={avatarImg}
-                                            alt='profile'
-                                            height='30'
-                                            width='30'
-                                        />
-                                    </div>
-
-                                </div>
+                                </span>
                             </div>
-                            {isOpen && (
-                                <div className='absolute rounded-xl shadow-md w-[40vw] md:w-[10vw] bg-white overflow-hidden right-0 top-12 text-sm'>
-                                    <div className='flex flex-col cursor-pointer'>
-                                        <Link
-                                            to='/'
-                                            className='block md:hidden px-4 py-3 hover:bg-neutral-100 transition font-semibold'
-                                        >
-                                            Home
-                                        </Link>
-                                        <>
-                                            {
-                                                user ? (
-                                                    <>
-                                                        <Link
-                                                            to='/my-added-products'
-                                                            className='px-4 py-3 hover:bg-neutral-100 transition font-semibold'
-                                                        >
-                                                            my added products
-                                                        </Link>
-                                                        <button onClick={handleLogout} className=" px-4 py-3 hover:bg-neutral-100 transition font-semibold text-red-500">
-                                                            logout
-                                                        </button>
-                                                    </>
-                                                ) :
-                                                    <>
-                                                        <Link
-                                                            to='/login'
-                                                            className='px-4 py-3 hover:bg-neutral-100 transition font-semibold'
-                                                        >
-                                                            sign in
-                                                        </Link>
-                                                        <Link
-                                                            to='/sign-up'
-                                                            className='px-4 py-3 hover:bg-neutral-100 transition font-semibold'
-                                                        >
-                                                            Sign Up
-                                                        </Link>
-                                                    </>
-                                            }
-                                        </>
 
-                                    </div>
-                                </div>
-                            )}
+                            <div className="hidden md:block">
+                                <MenuDropdown></MenuDropdown>
+                            </div>
                         </div>
                     </div>
                 </div>
