@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const ProductCard = ({ product }) => {
     console.log(product);
     return (
@@ -29,9 +31,11 @@ const ProductCard = ({ product }) => {
                 <button className="bg-yellow-500 text-white py-2 px-5 rounded-full font-medium hover:bg-yellow-400 transition duration-200 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-yellow-400">
                     Add to Cart
                 </button>
-                <button className="bg-transparent text-yellow-500 py-2 px-4 rounded-full border-2 border-yellow-500 font-medium hover:bg-yellow-100 transition duration-200 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-yellow-400">
-                    View Details
-                </button>
+                <Link
+                    to={`/product/${product._id}`}>
+                    <button className="bg-transparent text-yellow-500 py-2 px-4 rounded-full border-2 border-yellow-500 font-medium hover:bg-yellow-100 transition duration-200 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                        View Details
+                    </button></Link>
             </div>
         </div>
     );
