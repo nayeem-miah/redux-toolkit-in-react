@@ -3,6 +3,8 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { API } from "../../../api/Api";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
+import avatarImg from '../../../assets/placeholder.jpg'
+import { AiOutlineMenu } from "react-icons/ai";
 
 const Navbar = () => {
     const { user } = useContext(AuthContext);
@@ -41,7 +43,6 @@ const Navbar = () => {
                         <Link to={'/'} className="text-xl font-bold text-white lg:text-2xl hover:text-gray-300">
                             <span className="text-amber-400">EID</span> FESTIVAL
                         </Link>
-
 
                         {/* Mobile menu button */}
                         <div className="flex lg:hidden">
@@ -87,32 +88,86 @@ const Navbar = () => {
                             {navLinks}
                         </div>
 
-                        <div className="flex items-center mt-4 lg:mt-0">
-                            <button
-                                className="hidden mx-4 text-white transition-colors duration-300 transform lg:block hover:text-gray-300 focus:text-gray-300 focus:outline-none"
-                                aria-label="show notifications"
-                            >
 
-                            </button>
-                            <p className="text-white font-bold">Email: {user?.email}</p>
-                            <button type="button" className="flex items-center focus:outline-none" aria-label="toggle profile dropdown">
-                                {user?.email ?
-                                    <button onClick={handleLogout} className="text-red-500 btn p-4 mx-2 rounded">Logout</button> : <Link className="text-red-500 btn p-4 mx-2 rounded" to={'/login'} >
-                                        Login
-                                    </Link>
-                                }
 
-                                <div className="w-8 h-8 overflow-hidden border-2 border-white rounded-full">
-
-                                    <img
-                                        src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
-                                        className="object-cover w-full h-full"
-                                        alt="avatar"
-                                    />
+                        {/* Dropdown Menu */}
+                        <div className='relative'>
+                            <div className='flex flex-row items-center gap-3'>
+                                {/* Become A Host btn */}
+                                <div className='hidden md:block'>
+                                    {!user && (
+                                        <button
+                                            disabled={!user}
+                                            className='disabled:cursor-not-allowed cursor-pointer hover:bg-neutral-100 py-3 px-4 text-sm font-semibold rounded-full  transition'
+                                        >
+                                            Host your home
+                                        </button>
+                                    )}
                                 </div>
+                                {/* Dropdown btn */}
+                                <div
+                                    onClick={() => setIsOpen(!isOpen)}
+                                    className='p-4 md:py-1 md:px-2 border-[1px] border-neutral-200 flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition'
+                                >
+                                    <AiOutlineMenu />
+                                    <div className='hidden md:block'>
+                                        {/* Avatar */}
+                                        <img
+                                            className='rounded-full'
+                                            referrerPolicy='no-referrer'
+                                            src={avatarImg}
+                                            alt='profile'
+                                            height='30'
+                                            width='30'
+                                        />
+                                    </div>
 
-                                <h3 className="mx-2 text-white lg:hidden">Khatab wedaa</h3>
-                            </button>
+                                </div>
+                            </div>
+                            {isOpen && (
+                                <div className='absolute rounded-xl shadow-md w-[40vw] md:w-[10vw] bg-white overflow-hidden right-0 top-12 text-sm'>
+                                    <div className='flex flex-col cursor-pointer'>
+                                        <Link
+                                            to='/'
+                                            className='block md:hidden px-4 py-3 hover:bg-neutral-100 transition font-semibold'
+                                        >
+                                            Home
+                                        </Link>
+                                        <>
+                                            {
+                                                user ? (
+                                                    <>
+                                                        <Link
+                                                            to='/my-added-products'
+                                                            className='px-4 py-3 hover:bg-neutral-100 transition font-semibold'
+                                                        >
+                                                            my added products
+                                                        </Link>
+                                                        <button onClick={handleLogout} className=" px-4 py-3 hover:bg-neutral-100 transition font-semibold text-red-500">
+                                                            logout
+                                                        </button>
+                                                    </>
+                                                ) :
+                                                    <>
+                                                        <Link
+                                                            to='/login'
+                                                            className='px-4 py-3 hover:bg-neutral-100 transition font-semibold'
+                                                        >
+                                                            sign in
+                                                        </Link>
+                                                        <Link
+                                                            to='/sign-up'
+                                                            className='px-4 py-3 hover:bg-neutral-100 transition font-semibold'
+                                                        >
+                                                            Sign Up
+                                                        </Link>
+                                                    </>
+                                            }
+                                        </>
+
+                                    </div>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
