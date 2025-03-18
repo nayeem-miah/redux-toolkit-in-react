@@ -5,7 +5,6 @@ const EidOffer = () => {
     return (
         <div className="">
             <div className="">
-                Eid EidOffer
                 <Products />
             </div>
         </div>
