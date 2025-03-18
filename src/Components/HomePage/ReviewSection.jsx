@@ -32,12 +32,12 @@ export default function ReviewSection() {
             <h2 className="text-4xl font-bold text-white mb-8 drop-shadow-lg">
                 What Our Visitors Say
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 space-x-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
 
                 {reviews.map((review, index) => (
                     <div
                         key={index}
-                        className="bg-white p-6 rounded-lg shadow-lg w-80 h-auto transform hover:scale-105 transition duration-300 ease-in-out"
+                        className="bg-white hover:bg-gray-100 mx-5 p-6 rounded-lg shadow-lg w-80 h-auto transform  transition duration-300 ease-in-out"
                     >
                         <p className="text-lg text-gray-700 mb-4">{review.reviewText}</p>
                         <div className="flex items-center justify-center space-x-2">

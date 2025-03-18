@@ -30,8 +30,8 @@ function SignUp() {
     };
 
     return (
-        <div className="flex justify-center items-center h-full py-32  bg-gray-100 text-black">
-            <div className=" rounded-lg shadow-lg w-96">
+        <div className="flex  justify-center items-center h-full py-32  bg-gray-100 text-black">
+            <div className=" rounded-lg shadow-lg w-96 p-4">
                 <h2 className="text-2xl font-bold mb-4 text-center">Sign Up</h2>
                 {error && <p className="text-red-500 text-center">{error}</p>}
                 <form onSubmit={handleSubmit} className="flex flex-col space-y-4">

@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import toast from "react-hot-toast";
 
 function MyAddedProduct() {
     const { user } = useContext(AuthContext);
@@ -13,7 +14,18 @@ function MyAddedProduct() {
     console.log(products);
 
     const handleDelete = (index) => {
-        console.log(index);
+        fetch(`http://localhost:5000/cart-delete/${index}`, {
+            method: 'DELETE'
+        })
+            .then(res => res.json())
+            .then(data => {
+                // console.log(data);
+                if (data.deletedCount > 0) {
+                    toast.success('Product deleted successfully');
+                    const remainingProducts = products.filter(product => product._id !== index);
+                    setProducts(remainingProducts);
+                }
+            })
     }
     return (
         <div className="container mx-auto p-6 my-5">
@@ -39,7 +51,7 @@ function MyAddedProduct() {
                                 <td className="p-4 text-gray-700">{product.email}</td>
                                 <td className="p-4">
                                     <button
-                                        onClick={() => handleDelete(index)}
+                                        onClick={() => handleDelete(product._id)}
                                         className="bg-red-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-red-700 transition-all"
                                     >
                                         Delete
