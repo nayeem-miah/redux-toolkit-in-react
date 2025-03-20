@@ -10,6 +10,7 @@ import SignUp from "../Pages/SignUp/SignUp";
 import Login from "../Pages/Login/Login";
 import PRoductDetails from "../Components/EidOffer/ProductDetaisl";
 import MyAddedProduct from "../Pages/MyAddedProduct/MyAddedProduct";
+import Profile from "../Pages/profile/Profile";
 
 const RouterApp = () => {
     return (
@@ -23,6 +24,7 @@ const RouterApp = () => {
                 <Route path="sign-up" element={<SignUp />} />
                 <Route path="login" element={<Login />} />
                 <Route path="my-added-product" element={<MyAddedProduct />} />
+                <Route path="profile" element={<Profile />} />
 
                 {/* dashboard */}
                 <Route path="dashboard" element={<Dashboard />}>

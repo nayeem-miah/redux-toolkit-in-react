@@ -64,10 +64,10 @@ const MenuDropdown = () => {
                         {user ? (
                             <>
                                 <Link
-                                    to="/dashboard"
+                                    to="/profile"
                                     className="px-4 py-3 hover:bg-neutral-100 transition font-semibold"
                                 >
-                                    Dashboard
+                                    profile
                                 </Link>
                                 <Link
                                     to="/my-added-product"

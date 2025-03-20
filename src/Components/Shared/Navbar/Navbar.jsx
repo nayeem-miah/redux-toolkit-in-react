@@ -98,12 +98,18 @@ const Navbar = () => {
 
                                 <span className="block md:hidden">
                                     {user ? (
-                                        <div className="space-y-5 font-bold uppercase mt-3">
+                                        <div className="space-y-5 font-bold  mt-3">
                                             <div>
+                                                <Link to={'/profile'} className="text-white my-2  transition-colors duration-300 transform   md:mx-4 md:my-0">
+                                                    profile
+                                                </Link>
                                             </div>
+                                            <Link to={'/my-added-product'} className=" my-2 text-white transition-colors duration-300 transform   md:mx-4 md:my-0">
+                                                my added product
+                                            </Link>
                                             <div
                                                 onClick={handleLogout}
-                                                className="  font-bold my-2  transition-colors duration-300 transform hover:text-red-500  md:mx-4 md:my-0"
+                                                className="  font-bold my-2  transition-colors duration-300 transform text-red-500  md:mx-4 md:my-0"
                                             >
                                                 Logout
                                             </div>
