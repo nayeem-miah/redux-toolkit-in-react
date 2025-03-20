@@ -11,7 +11,7 @@ function MyAddedProduct() {
             .then(res => res.json())
             .then(data => setProducts(data))
     }, [user?.email])
-    console.log(products);
+    // console.log(products);
 
     const handleDelete = (index) => {
         fetch(`http://localhost:5000/cart-delete/${index}`, {

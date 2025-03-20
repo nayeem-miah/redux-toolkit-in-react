@@ -20,7 +20,7 @@ function SignUp() {
         try {
             await API.post("/api/auth/signup", user)
             toast.success("sign up success")
-            console.log("sign up success")
+            // console.log("sign up success")
             navigate("/login");
         } catch (error) {
             console.error("Something went wrong. Please try again.", error);

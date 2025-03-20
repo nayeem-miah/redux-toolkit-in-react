@@ -1,22 +1,45 @@
 import { useEffect, useState } from "react";
 import ProductCard from "../Card/ProductCard";
+import { debounce } from "lodash";
+
 const Products = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [search, setSearch] = useState("");
+    const [debouncedSearch, setDebouncedSearch] = useState("");
 
+    // Debounce search input
     useEffect(() => {
-        try {
-            setLoading(true);
-            fetch("http://localhost:5000/cloths")
-                .then(res => res.json())
-                .then(data => setProducts(data))
-            setLoading(false)
-        } catch (error) {
-            console.log(error);
-            setLoading(false)
-        }
-    }, [])
-    console.log(products);
+        const handler = debounce((value) => {
+            setDebouncedSearch(value);
+        }, 300);
+
+        handler(search);
+
+        return () => {
+            handler.cancel && handler.cancel();
+        };
+    }, [search]);
+
+    // Fetch products from API
+    useEffect(() => {
+        if (!debouncedSearch) return;
+        setLoading(true);
+        fetch(`http://localhost:5000/cloths?search=${debouncedSearch}`)
+            .then(res => res.json())
+            .then(data => {
+                setProducts(data);
+                setLoading(false);
+            })
+            .catch(error => {
+                console.error("Error fetching products:", error);
+                setLoading(false);
+            });
+    }, [debouncedSearch]);
+
+    const handleSearchChange = (e) => {
+        setSearch(e.target.value);
+    };
 
     return (
         <div className="py-10 px-4">
@@ -24,7 +47,7 @@ const Products = () => {
             {/* search implementation */}
             <div className="">
                 <div className="w-full h-auto mx-auto p-4 
-                 border my-2 shadow">
+             border my-2 shadow">
                     {/* Heading Section */}
                     <div className="text-center mb-4">
                         <h2 className="text-2xl   font-semibold">Search and filter Products</h2>
@@ -40,30 +63,34 @@ const Products = () => {
                             required
                             placeholder="Search by brand, category, or title"
                             name="search"
-                            // value={search}
-                            // onChange={handleSearchChange}
+                            value={search}
+                            onChange={handleSearchChange}
                             className="input input-bordered w-full md:w-full max-w-screen-sm bg-white"
                         />
-                        <a href="#recentData">
-                            <button
-                                type="button"
-                                className="px-4 py-2 bg-amber-500 text-white rounded-md"
-                            >
-                                Search
-                            </button>
-                        </a>
+                        <button
+                            type="button"
+                            className="px-4 py-2 bg-amber-500 text-white rounded-md"
+                        >
+                            Search
+                        </button>
                     </form>
                 </div>
             </div>
-            <h3 className="text-center text-3xl from-amber-500 my-4">Eid products</h3>
-            {loading ? <p>loading........</p> : <div className="grid grid-cols-1 md:grid-cols-2
-             lg:grid-cols-3 xl:grid-cols-3 xxl:grid-cols-4 gap-10">
-                {
-                    products?.map(product => <ProductCard key={product._id} product={product} />)
-                }
-            </div>}
+            {/* <h3 className="text-center text-3xl from-amber-500 my-4">Eid products</h3> */}
+
+            {loading ? (
+                <p className="text-center text-gray-600">Loading products...</p>
+            ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    {products.length > 0 ? (
+                        products.map(product => <ProductCard key={product._id} product={product} />)
+                    ) : (
+                        <p className="text-center text-gray-500 col-span-full text-3xl">No products found.</p>
+                    )}
+                </div>
+            )}
         </div>
-    )
-}
+    );
+};
 
 export default Products;

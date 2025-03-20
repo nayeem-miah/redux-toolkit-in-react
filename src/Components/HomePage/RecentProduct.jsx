@@ -19,7 +19,7 @@ function RecentProduct() {
         }
     }, [])
 
-    console.log(products);
+    // console.log(products);
 
     const topProducts = products.filter(product => product.rating >= 4.5);
     const recentProducts = topProducts.sort((a, b) => b.id - a.id).slice(0, 6);

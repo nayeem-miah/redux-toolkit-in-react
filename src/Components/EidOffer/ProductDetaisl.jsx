@@ -43,7 +43,7 @@ const ProductDetails = () => {
     }
 
     const handleAddToCart = () => {
-        console.log("Product added to cart:", product);
+        // console.log("Product added to cart:", product);
 
         const addProduct = {
             product_img: product.product_img,
@@ -68,7 +68,7 @@ const ProductDetails = () => {
         })
             .then((response) => response.json())
             .then((data) => {
-                console.log("Product added to cart:", data);
+                // console.log("Product added to cart:", data);
 
                 if (data.insertedId) {
                     toast.success("Product added to cart successfully!");

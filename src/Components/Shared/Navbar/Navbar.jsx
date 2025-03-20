@@ -8,7 +8,7 @@ import MenuDropdown from "./MenuDropDrowon";
 
 const Navbar = () => {
     const { user } = useContext(AuthContext);
-    console.log(user);
+    // console.log(user);
     const navigate = useNavigate()
     const [isOpen, setIsOpen] = useState(false);
     const handleLogout = async () => {
