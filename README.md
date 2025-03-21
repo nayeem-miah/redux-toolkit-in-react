@@ -21,7 +21,7 @@ You can view the live version of the project here:
 - **Cart Management**: Users can view, edit, and remove products from the cart.
 - **Responsive Design**: Fully responsive layout using Tailwind CSS, optimized for all devices.
 - **Order Management**: Users can proceed to checkout and place orders.
-- **Admin Dashboard**: Admins can manage products, track orders, and update special offers.
+
 - **Dynamic Content**: The website displays Eid specials and updates dynamically.
 
 ### Product Features
