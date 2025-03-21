@@ -21,21 +21,25 @@ const Products = () => {
         };
     }, [search]);
 
-    // Fetch products from API
     useEffect(() => {
-        if (!debouncedSearch) return;
-        setLoading(true);
-        fetch(`http://localhost:5000/cloths?search=${debouncedSearch}`)
-            .then(res => res.json())
-            .then(data => {
+        const fetchProducts = async () => {
+            setLoading(true);
+            try {
+                const response = await fetch(
+                    `http://localhost:5000/cloths${debouncedSearch ? `?search=${debouncedSearch}` : ""}`
+                );
+                const data = await response.json();
                 setProducts(data);
-                setLoading(false);
-            })
-            .catch(error => {
+            } catch (error) {
                 console.error("Error fetching products:", error);
+            } finally {
                 setLoading(false);
-            });
+            }
+        };
+
+        fetchProducts();
     }, [debouncedSearch]);
+
 
     const handleSearchChange = (e) => {
         setSearch(e.target.value);
@@ -45,7 +49,7 @@ const Products = () => {
         <div className="py-10 px-4">
 
             {/* search implementation */}
-            <div className="">
+            <div className="mb-6">
                 <div className="w-full h-auto mx-auto p-4 
              border my-2 shadow">
                     {/* Heading Section */}
@@ -81,7 +85,7 @@ const Products = () => {
             {loading ? (
                 <p className="text-center text-gray-600">Loading products...</p>
             ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-6">
                     {products.length > 0 ? (
                         products.map(product => <ProductCard key={product._id} product={product} />)
                     ) : (
