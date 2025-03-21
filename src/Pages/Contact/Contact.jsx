@@ -19,30 +19,15 @@ const Contact = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        // console.log('Form submitted:', formData);
-        toast.success("success send message")
+        // Form submission logic
+        toast.success("Message sent successfully!");
     };
 
     return (
-        <div className=" py-16">
+        <div className="py-16 bg-gray-50">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
-                    Contact Us
-                </h2>
-
-
-                {/* Additional text section */}
-                <div className="mb-12 text-center">
-                    <p className="text-lg text-gray-700">
-                        We value your feedback and are always happy to hear from you. Whether it's an inquiry, suggestion, or concern, your message will be given our full attention.
-                    </p>
-                    <p className="text-lg text-gray-700 mt-4">
-                        If you're in need of support, please provide as much detail as possible so we can assist you more effectively. We look forward to connecting with you!
-                    </p>
-                </div>
-
-                <form onSubmit={handleSubmit} className="bg-white p-8 rounded-lg shadow-lg space-y-6">
+                <ContactBanner />
+                <form onSubmit={handleSubmit} className="bg-white p-8 rounded-lg shadow-lg space-y-6 mt-12">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label htmlFor="name" className="block text-lg font-medium text-gray-700">
@@ -121,6 +106,25 @@ const Contact = () => {
                 </div>
             </div>
         </div>
+    );
+};
+
+const ContactBanner = () => {
+    return (
+        <section className="bg-gradient-to-r from-yellow-300 to-orange-500 text-white py-12 px-4 md:px-8 rounded-lg shadow-md">
+            <div className="max-w-7xl mx-auto text-center">
+                <h2 className="text-3xl font-bold mb-4">Contact Us</h2>
+                <p className="text-lg mb-6">
+                    Have any questions or feedback? We'd love to hear from you!
+                </p>
+                <a
+                    href="mailto:your-email@example.com"
+                    className="bg-blue-600 py-2 px-6 rounded-lg text-lg font-semibold hover:bg-yellow-400 transition duration-300"
+                >
+                    Get In Touch
+                </a>
+            </div>
+        </section>
     );
 };
 

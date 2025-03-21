@@ -12,11 +12,11 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const res = await axios.get("http://localhost:5000/api/auth/protected", { withCredentials: true });
+                const res = await axios.get("https://react-tailwind-update-eid-server.vercel.app/api/auth/protected", { withCredentials: true });
                 setUser(res.data.user);
             } catch (error) {
                 setUser(null);
-                console.log(error);
+                console.error(error);
             } finally {
                 setLoading(false);
             }
@@ -27,7 +27,7 @@ export const AuthProvider = ({ children }) => {
     // Login function
     const login = async (email, password) => {
         try {
-            const res = await axios.post("http://localhost:5000/api/auth/login", { email, password }, { withCredentials: true });
+            const res = await axios.post("https://react-tailwind-update-eid-server.vercel.app/api/auth/login", { email, password }, { withCredentials: true });
             setUser(res.data.user);
             return res.data.message; // Return success message
         } catch (error) {
@@ -38,7 +38,7 @@ export const AuthProvider = ({ children }) => {
     // Logout function
     const logout = async () => {
         try {
-            await axios.post("http://localhost:5000/api/auth/logout", {}, { withCredentials: true });
+            await axios.post("https://react-tailwind-update-eid-server.vercel.app/api/auth/logout", {}, { withCredentials: true });
             setUser(null);
         } catch (error) {
             console.error("Logout Error:", error);

@@ -12,6 +12,7 @@ import PRoductDetails from "../Components/EidOffer/ProductDetaisl";
 import MyAddedProduct from "../Pages/MyAddedProduct/MyAddedProduct";
 import Profile from "../Pages/profile/Profile";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+import PrivateRoute from "./PriverRoute";
 
 const RouterApp = () => {
     return (
@@ -25,8 +26,8 @@ const RouterApp = () => {
                 <Route path="product/:id" element={<PRoductDetails />} />
                 <Route path="sign-up" element={<SignUp />} />
                 <Route path="login" element={<Login />} />
-                <Route path="my-added-product" element={<MyAddedProduct />} />
-                <Route path="profile" element={<Profile />} />
+                <Route path="my-added-product" element={<PrivateRoute><MyAddedProduct /></PrivateRoute>} />
+                <Route path="profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
 
                 {/* dashboard */}
                 <Route path="dashboard" element={<Dashboard />}>

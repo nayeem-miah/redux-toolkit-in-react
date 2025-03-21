@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 const ProductDetails = () => {
@@ -14,7 +14,7 @@ const ProductDetails = () => {
             try {
                 setLoading(true);
                 setError(null);
-                const response = await fetch(`http://localhost:5000/single-product/${id}`);
+                const response = await fetch(`https://react-tailwind-update-eid-server.vercel.app/single-product/${id}`);
                 if (!response.ok) {
                     throw new Error("Failed to fetch product details");
                 }
@@ -59,7 +59,7 @@ const ProductDetails = () => {
             email: user?.email,
         };
 
-        fetch("http://localhost:5000/carts", {
+        fetch("https://react-tailwind-update-eid-server.vercel.app/carts", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

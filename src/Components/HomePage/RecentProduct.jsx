@@ -9,12 +9,12 @@ function RecentProduct() {
     useEffect(() => {
         try {
             setLoading(true);
-            fetch("http://localhost:5000/cloths")
+            fetch("https://react-tailwind-update-eid-server.vercel.app/cloths")
                 .then(res => res.json())
                 .then(data => setProducts(data))
             setLoading(false)
         } catch (error) {
-            console.log(error);
+            console.error(error);
             setLoading(false)
         }
     }, [])

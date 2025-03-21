@@ -4,10 +4,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { API } from "../../api/Api";
 import toast from "react-hot-toast";
 
+
 function SignUp() {
     const [user, setUser] = useState({ username: "", email: "", password: "" });
     const [error, setError] = useState("");
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
 
     const handleChange = (e) => {
         setUser({ ...user, [e.target.name]: e.target.value });
@@ -15,6 +17,7 @@ function SignUp() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);
         // console.log(user);
         // Make API call to register user
         try {
@@ -22,10 +25,12 @@ function SignUp() {
             toast.success("sign up success")
             // console.log("sign up success")
             navigate("/login");
+            setLoading(false);
         } catch (error) {
             console.error("Something went wrong. Please try again.", error);
             toast.error(error.message)
             setError(error)
+            setLoading(false);
         }
     };
 
@@ -62,7 +67,9 @@ function SignUp() {
                         required
                         className="p-2 border border-gray-300 rounded"
                     />
-                    <button type="submit" className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600">Sign Up</button>
+                    <button type="submit" className=" py-3  text-lg font-semibold rounded bg-yellow-500 text-white shadow-lg hover:bg-yellow-600">{
+                        loading ? "Loading..." : "Sign Up"
+                    }</button>
                 </form>
                 <div className="text-center mt-2 py-4">
                     <Link to="/login" className="text-center mt-2 py-2text-blue-500 hover:text-blue-600">Already have an account? Login</Link>
