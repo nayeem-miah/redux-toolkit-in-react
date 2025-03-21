@@ -8,6 +8,7 @@ const Login = () => {
     const [user, setUser] = useState({ email: "", password: "" });
     const [error, setError] = useState("");
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
 
     const handleChange = (e) => {
         setUser({ ...user, [e.target.name]: e.target.value });
@@ -15,15 +16,21 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);
+        setError("");
+
         try {
-            await login(user.email, user.password);
-            // console.log("User logged in successfully", user);
-            toast.success("login success")
-            navigate('/')
+            const message = await login(user.email, user.password);
+            toast.success(message);
+            navigate('/');
         } catch (error) {
-            setError(error.response?.data?.message || "Login failed. Please try again.");
+            setError(error.message);
+            toast.error(error.message);
+        } finally {
+            setLoading(false);
         }
     };
+
 
     return (
         <div className="flex justify-center items-center min-h-screen bg-gray-100">
@@ -49,9 +56,11 @@ const Login = () => {
                         required
                         className="p-2 border border-gray-300 rounded"
                     />
-                    <button type="submit" className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600">Login</button>
+                    <button type="submit" className="py-3 text-lg font-semibold rounded bg-yellow-500 text-white shadow-lg hover:bg-yellow-600">
+                        {loading ? "Loading..." : "Login"}
+                    </button>
                 </form>
-                <Link to="/sign-up" className="text-blue-500 mt-4">Don't have an account? Sign up</Link>
+                <Link to="/sign-up" className="text-blue-500 mt-4 block text-center">Don't have an account? Sign up</Link>
             </div>
         </div>
     );

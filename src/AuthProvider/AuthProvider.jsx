@@ -1,35 +1,53 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext(null);
+
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
 
+    // Check if user is already logged in on page load
     useEffect(() => {
-        axios.get("http://localhost:5000/api/auth/protected", { withCredentials: true })
-            .then((res => setUser(res.data.user)))
-            .catch(() => setUser(null))
-    }, [])
+        const fetchUser = async () => {
+            try {
+                const res = await axios.get("http://localhost:5000/api/auth/protected", { withCredentials: true });
+                setUser(res.data.user);
+            } catch (error) {
+                setUser(null);
+                console.log(error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchUser();
+    }, []);
 
+    // Login function
     const login = async (email, password) => {
         try {
-            const res = await axios.post('http://localhost:5000/api/auth/login', { email, password }, { withCredentials: true })
-            setUser(res.data.user)
+            const res = await axios.post("http://localhost:5000/api/auth/login", { email, password }, { withCredentials: true });
+            setUser(res.data.user);
+            return res.data.message; // Return success message
         } catch (error) {
-            console.log(error);
+            throw new Error(error.response?.data?.message || "Login failed!");
         }
-    }
+    };
+
+    // Logout function
     const logout = async () => {
-        const res = axios.post("http://localhost:5000/api/auth/logout", { withCredentials: true })
-        console.log(res);
-        setUser(null)
-    }
+        try {
+            await axios.post("http://localhost:5000/api/auth/logout", {}, { withCredentials: true });
+            setUser(null);
+        } catch (error) {
+            console.error("Logout Error:", error);
+        }
+    };
 
-
-    console.log(user);
     return (
-        <AuthContext.Provider value={{ user, login, logout }}>
+        <AuthContext.Provider value={{ user, login, logout, loading }}>
             {children}
         </AuthContext.Provider>
-    )
-}
+    );
+};
