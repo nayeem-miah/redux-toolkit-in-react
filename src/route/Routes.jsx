@@ -11,11 +11,13 @@ import Login from "../Pages/Login/Login";
 import PRoductDetails from "../Components/EidOffer/ProductDetaisl";
 import MyAddedProduct from "../Pages/MyAddedProduct/MyAddedProduct";
 import Profile from "../Pages/profile/Profile";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 
 const RouterApp = () => {
     return (
         <Routes>
             <Route path="/" element={<Main />}>
+                <Route path="*" element={<ErrorPage />} />
                 <Route index element={<Home />} />
                 <Route path="contact" element={<Contact />} />
                 <Route path="about" element={<About />} />
