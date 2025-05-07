@@ -4,15 +4,17 @@ import './index.css'
 import { BrowserRouter } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
 import Counter from './Components/Counter/Counter'
+import { Provider } from 'react-redux'
+import store from './store'
 
 createRoot(document.getElementById('root')).render(
 
 
   <StrictMode>
     <BrowserRouter>
-      <div className=''>
+      <Provider store={store}>
         <Counter />
-      </div>
+      </Provider>
       <Toaster />
     </BrowserRouter>
   </StrictMode>

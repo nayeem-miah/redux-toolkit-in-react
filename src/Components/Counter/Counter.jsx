@@ -1,18 +1,20 @@
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { decrementCounter, incrementCounter, resetCounter } from './../../services/actions/counterActions';
 
 const Counter = () => {
 
-    const [count, setCount] = useState(0);
-
+    const count = useSelector(state => state.count);
+    // console.log(count);
+    const dispatch = useDispatch();
     const handleIncrement = () => {
-        setCount(count => count + 1)
-    }
+        dispatch(incrementCounter());
+    };
     const handleDecrement = () => {
-        setCount(count => count - 1)
-    }
+        dispatch(decrementCounter())
+    };
     const handleReset = () => {
-        setCount(0)
-    }
+        dispatch(resetCounter())
+    };
     return (
         <div className="mx-auto max-w-5xl p-10">
             <h3 className="text-3xl "> count : {count}</h3>
@@ -27,3 +29,12 @@ const Counter = () => {
 };
 
 export default Counter;
+
+//1. state --> count : 0
+//2. actions --> increment, decrement, reset
+//3. reduces --> increment ---> count => count + 1
+//       --> decrement ---> count => count - 1
+//       --> reset ---> count => 0
+//4. store -->
+// 5. providing store in react
+// 6 using store 
