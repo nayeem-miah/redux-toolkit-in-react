@@ -15,3 +15,8 @@ createRoot(document.getElementById('root')).render(
   </StrictMode>
 )
 
+
+// ---------------------------------
+// counter slice -------> createSlice({})
+// counter store---------> configureStore()
+// counter store
