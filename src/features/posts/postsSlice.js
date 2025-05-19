@@ -16,7 +16,8 @@ export const postSlice = createSlice({
     extraReducers: (builder) => {
         // pending data 
         builder.addCase(fetchingPosts.pending, (state) =>
-            state.isLoading = true);
+    {state.isLoading = true}
+        );
         // get data 
         builder.addCase(fetchingPosts.fulfilled, (state, action) => {
             state.isLoading = false
