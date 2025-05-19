@@ -1,4 +1,5 @@
 import CounterView from "./features/counter/CounterView";
+import PostView from "./features/posts/PostsView";
 
 function App() {
     return (
@@ -6,6 +7,7 @@ function App() {
             <div>
                 hello react redux
                 <CounterView />
+                <PostView />
             </div>
         </div>
     );
